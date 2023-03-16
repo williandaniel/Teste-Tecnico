@@ -5,8 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 </head>
 <body>
 
@@ -29,14 +27,20 @@
       array("id" => 15, "nota1" => 7.8, "nota2" => 6.3, "nota3" => 7.4),
       array("id" => 16, "nota1" => 8.9, "nota2" => 6.3, "nota3" => 5.9),
       array("id" => 17, "nota1" => 7.3, "nota2" => 6.3, "nota3" => 4.9),
-      array("id" => 18, "nota1" => 7.3, "nota2" => 6.3, "nota3" => 7.9),
+      array("id" => 18, "nota1" => 5.0, "nota2" => 4.9, "nota3" => 5.1),
       array("id" => 19, "nota1" => 7.8, "nota2" => 6.3, "nota3" => 7.9),
       array("id" => 20, "nota1" => 7.1, "nota2" => 6.3, "nota3" => 7.9),
       array("id" => 21, "nota1" => 7.3, "nota2" => 3.9, "nota3" => 8.9)
   );
 
-  function verificaSituacao($notas) {
+  function calculaMedia($notas) {
     $media = round((($notas['nota1'] + $notas['nota2'] + $notas['nota3']) / 3), 1);
+    
+    return $media;
+  }
+
+  function verificaSituacao($notas) {
+    $media = calculaMedia($notas);
 
     if($media < 5) {
       echo 'Reprovado';
@@ -49,8 +53,7 @@
 ?>
 
 <div class="container">
-  <h2>Resposta 1</h2>
-  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
+  <h1>Resposta 1</h1>            
   <table class="table">
     <thead>
       <tr>
@@ -58,6 +61,7 @@
         <th>Nota 1</th>
         <th>Nota 2</th>
         <th>Nota 3</th>
+        <th>Média</th>
         <th>Situação</th>
       </tr>
     </thead>
@@ -70,6 +74,7 @@
         <td><?= $notas['nota1'] ?></td>
         <td><?= $notas['nota2'] ?></td>
         <td><?= $notas['nota3'] ?></td>
+        <td><?= calculaMedia($notas) ?></td>
         <td><?= verificaSituacao($notas) ?></td>
       </tr>
     <?php
