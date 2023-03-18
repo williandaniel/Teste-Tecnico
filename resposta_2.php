@@ -9,29 +9,27 @@
 <body>
 
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "teste_hangar";
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $database = "teste_hangar";
+  
+  
+  $db = new mysqli($servername, $username, $password, $database);
     
-    
-    $db = new mysqli($servername, $username, $password, $database);
-     
-    
-    if ($db->connect_error) {
-        die("Falha na Conexão: " . $db->connect_error);
-    } else {
-        echo "Conectado com Sucesso";
-    }
-    
-    $sql = 'SELECT user.user_name AS name, user.user_city AS city, user.user_country AS country, orders.order_date AS date, orders.order_total AS total
-    FROM user, orders
-    WHERE user.user_id = orders.order_user_id AND user.user_id IN (1, 3, 5)
-    ORDER BY user.user_name ASC';
+  
+  if ($db->connect_error) {
+      die("Falha na Conexão: " . $db->connect_error);
+  }
+  
+  $sql = 'SELECT user.user_name AS name, user.user_city AS city, user.user_country AS country, orders.order_date AS date, orders.order_total AS total
+  FROM user, orders
+  WHERE user.user_id = orders.order_user_id AND user.user_id IN (1, 3, 5)
+  ORDER BY user.user_name ASC';
 
-    $resultado = $db->query($sql);
+  $resultado = $db->query($sql);
 
-    $db->close();
+  $db->close();
 ?>
 
 <div class="container">

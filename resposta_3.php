@@ -9,33 +9,31 @@
 <body>
 
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "teste_hangar";
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $database = "teste_hangar";
+  
+  
+  $db = new mysqli($servername, $username, $password, $database);
     
-    
-    $db = new mysqli($servername, $username, $password, $database);
-     
-    
-    if ($db->connect_error) {
-        die("Falha na Conexão: " . $db->connect_error);
-    } else {
-        echo "Conectado com Sucesso";
-    }
-    
-    $sql1 = 'UPDATE user
-    SET user_country = "Canada"
-    WHERE user_id = 4';
+  
+  if ($db->connect_error) {
+    die("Falha na Conexão: " . $db->connect_error);
+  }
+  
+  $sql1 = 'UPDATE user
+  SET user_country = "Canada"
+  WHERE user_id = 4';
 
-    $alteracao = $db->query($sql1);
+  $alteracao = $db->query($sql1);
 
-    $sql2 = 'SELECT *
-    FROM user';
+  $sql2 = 'SELECT *
+  FROM user';
 
-    $resultado = $db->query($sql2);
+  $resultado = $db->query($sql2);
 
-    $db->close();
+  $db->close();
 ?>
 
 <div class="container">
