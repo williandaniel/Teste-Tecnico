@@ -15,21 +15,23 @@
     $database = "teste_hangar";
     
     
-    $conexao = new mysqli($servername, $username, $password, $database);
+    $db = new mysqli($servername, $username, $password, $database);
      
     
-    if ($conexao->connect_error) {
-        die("Falha na Conexão: " . $conexao->connect_error);
+    if ($db->connect_error) {
+        die("Falha na Conexão: " . $db->connect_error);
     } else {
         echo "Conectado com Sucesso";
     }
     
-    $sql = 'SELECT user.user_name as name, user.user_city as city, user.user_country as country, orders.order_date as date, orders.order_total as total
+    $sql = 'SELECT user.user_name AS name, user.user_city AS city, user.user_country AS country, orders.order_date AS date, orders.order_total AS total
     FROM user, orders
     WHERE user.user_id = orders.order_user_id AND user.user_id IN (1, 3, 5)
     ORDER BY user.user_name ASC';
 
-    $resultado = $conexao->query($sql);
+    $resultado = $db->query($sql);
+
+    $db->close();
 ?>
 
 <div class="container">
