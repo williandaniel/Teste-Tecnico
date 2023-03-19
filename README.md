@@ -1,8 +1,8 @@
-# Hangar-Digital-Teste-Tecnico
+# Hangar Digital - Teste Técnico
 
 ### Para acesso local do banco de dados fornecido para o teste técnico, foi utilizado o XAMPP.
 
-#### Comandos do Shell do XAMPP utilizados para criação e importação do banco de dados:
+#### Comandos no Shell do XAMPP utilizados para criação e importação do banco de dados:
 
 > mysql -u root
 

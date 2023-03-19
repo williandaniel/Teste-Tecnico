@@ -1,68 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Resposta 4</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Resposta 4</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-
 <?php
-  error_reporting(0);
+    error_reporting(0);
 
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $database = "teste_hangar";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "teste_hangar";
 
+    $db = new mysqli($servername, $username, $password, $database);
 
-  $db = new mysqli($servername, $username, $password, $database);
-
-  
-  if ($db->connect_error) {
+    if ($db->connect_error) {
     ?>
-    <div class="alert alert-danger" role="alert">
-      <?php
-      die("Falha na Conexão: " . $db->connect_error);
-      ?>
-    </div>
+        <div class="alert alert-danger" role="alert">
+        <?php
+            die("Falha na Conexão: " . $db->connect_error);
+        ?>
+        </div>
     <?php
-  }
+    }
 
-  $sql = 'SELECT user.user_country AS country, SUM(orders.order_total) AS total
-  FROM user
-  LEFT JOIN orders ON orders.order_user_id = user.user_id
-  GROUP BY country';
-  
-  $resultado = $db->query($sql);
-  
-  $db->close();
+    $sql = 'SELECT user.user_country AS country, SUM(orders.order_total) AS total
+    FROM user
+    LEFT JOIN orders ON orders.order_user_id = user.user_id
+    GROUP BY country';
+
+    $resultado = $db->query($sql);
+
+    $db->close();
 ?>
 
 <div class="container">
-  <h1>Resposta 4</h1>            
-  <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Country</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-      foreach ($resultado as $index => $usuario) {
-    ?> 
-        <tr>
-        <th><?= $usuario['country'] ?></th>
-        <td><?= $usuario['total'] ?></td>
-        </tr>
-    <?php
-      }
-    ?>
-  </tbody>
-</table>
+    <h1>Resposta 4</h1>            
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Country</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+            foreach ($resultado as $index => $usuario) {
+        ?> 
+            <tr>
+                <th><?= $usuario['country'] ?></th>
+                <td><?= $usuario['total'] ?></td>
+            </tr>
+        <?php
+        }
+        ?>
+        </tbody>
+    </table>
 </div>
-
 </body>
 </html>
